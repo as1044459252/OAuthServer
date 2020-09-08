@@ -1,0 +1,108 @@
+.products-right-grids-bottom p,.products-right-grids-bottom h4{
+    margin: 0.5em;
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+}
+
+#left{
+    text-align: center;
+}
+
+.products-right-grids-bottom div > div > p > a{
+    color: #212121;
+    padding-top: 0.3em;
+}
+#left > div > p:nth-child(4),#middle > div > p:nth-child(4),#right > div > p:nth-child(4){
+    color: #999;
+    font-size: 13px;
+    text-align: left;
+}
+
+.products-right-grids-bottom img{
+    color: #212121;
+}
+.dealBtn a{
+    background-color: transparent;
+    color: #D8703F;
+    margin: 0.5em;
+    border: 1px solid;
+    border-bottom-color: #D8703F;
+    border-radius: 0;
+}
+.products-right-grids-bottom button:hover{
+    background-color: transparent;
+    color: #D8703F;
+    border: 1px solid;
+    border-color: #212121;
+}
+
+.orderInfo > div > ul{
+    font-family: 'Open Sans', sans-serif;
+    list-style: none;
+}
+.orderInfo > div > ul li{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    margin-top: 0.5em;
+}
+.orderInfo{
+    margin-top: 10em;
+    margin-bottom: 10em;
+}
+
+#orderInfo > ul{
+    font-family: 'Open Sans', sans-serif;
+    list-style: none;
+    margin-top: 2em;
+}
+#orderInfo > ul li{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    margin-top: 0.4em;
+}
+#updateInfo{
+    font-family: 'Open Sans', sans-serif;
+}
+#updateInfo > form > input, #pwdForm > form > input{
+    margin-top: 2em;
+    width: 100%;
+}
+#personalInfo , #modifyPwd{
+    text-align: center;
+}
+.tab-content{
+    text-align: center;
+}
+.products-right-grid input{
+    height: 40px;
+    width: 40%;
+    border-color: black;
+    border-width: thin;
+}
+#searchBtn{
+    background-color: #212121;
+    border-color: #ffffff;
+}
+#scoreDiv ul{
+    font-family: 'Open Sans', sans-serif;
+    list-style: none;
+    margin-top: 3em;
+}
+
+#scoreDiv  ul li{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    margin-top: 1em;
+}
+
+#searchDiv ul li img{
+    width: 200px;
+    height: 200px;
+}
+#searchDiv ul li button{
+    margin-left: 0.3em;
+    background-color: #212121;
+}
+
+
+

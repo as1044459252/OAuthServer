@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.circles.bookstore.mapper.QQMapper">
+
+    <select id="checkQQ" resultType="com.circles.bookstore.bean.oauthServer.QQUser">
+        select * from qq_user where qqNumber = #{qqNumber} and password = #{password}
+    </select>
+
+    <update id="updateCode">
+        update qq_user set code=#{code}
+                            where qqNumber = #{qqNumber}
+    </update>
+
+    <update id="setUsed">
+        update qq_user set isUsed = true
+                            where qqNumber = #{qqNumber}
+    </update>
+
+    <update id="setNotUsed">
+        update qq_user set isUsed = false
+                            where qqNumber = #{qqNumber}
+    </update>
+
+    <update id="updateToken">
+        update qq_user set accessToken=#{accessToken}
+                            where qqNumber = #{qqNumber}
+    </update>
+
+    <select id="getQQUserByCode" resultType="com.circles.bookstore.bean.oauthServer.QQUser">
+        select * from qq_user where code = #{code}
+    </select>
+
+    <select id="getQQUserByToken" resultType="com.circles.bookstore.bean.oauthServer.QQUser">
+        select * from qq_user where accessToken = #{token}
+    </select>
+
+
+
+</mapper>
