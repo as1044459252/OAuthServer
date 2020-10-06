@@ -23,10 +23,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.net.InetAddress;
 import java.net.URI;
 import java.net.URISyntaxException;
 /*
@@ -62,11 +64,21 @@ public class myQQController {
 
     //用户输入账号密码后点击提交的请求处理
     @RequestMapping("/qqLogin")
+    @ResponseBody
     public Object QQLogin(HttpSession session,
                           @RequestParam("username") String username,
                           @RequestParam("password") String password,
                           Model model){
         //先验证是否登录成功
+        System.out.println("正在登录");
+        //查看本机IP，为了本机上测试使用
+        InetAddress ia = null;
+        try {
+            ia = InetAddress.getLocalHost();
+            System.out.println(ia.getHostAddress());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         boolean isLogin = qqLoginService.login(username,password);
         //验证type，生成code,并添加到对应账号
         if(isLogin) {

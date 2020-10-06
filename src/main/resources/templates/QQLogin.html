@@ -14,6 +14,10 @@
     <link rel="stylesheet" type="text/css" th:href="@{~/css/jquery-ui.css}">
     <!-- for bootstrap working -->
     <script type="text/javascript" th:src="@{~/js/bootstrap-3.1.1.min.js}"></script>
+    <!-- 微信 JS-SDK 如果不需要兼容小程序，则无需引用此 JS 文件。 -->
+    <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+    <!-- uni 的 SDK，必须引用。 -->
+    <script type="text/javascript" src="https://js.cdn.aliyun.dcloud.net.cn/dev/uni-app/uni.webview.1.5.1.js"></script>
     <!-- //for bootstrap working -->
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
@@ -21,18 +25,62 @@
 </head>
 <body>
     <div class="container col-md-4" style="border: 1px solid #ccc;" id="loginDiv">
-        <form id="loginForm" th:action="@{/qqLogin}" method="post">
+        <form id="loginForm">
             <div class="form-group">
                 <label>用户名</label>
-                <input type="text" class="form-control" name="username" placeholder="请输入用户名">
+                <input type="text" class="form-control" id="username" placeholder="请输入用户名">
             </div>
             <div class="form-group">
                 <label>密码</label>
-                <input type="password" class="form-control" name="password" placeholder="请输入密码">
+                <input type="password" class="form-control" id="password" placeholder="请输入密码">
             </div>
-            <button type="submit" class="btn btn-default">登录</button>
-            <label style="color: red" th:if="${not #strings.isEmpty(errMsg)}" th:text="${errMsg}"></label>
+            <label style="color: #ff0000" th:if="${not #strings.isEmpty(errMsg)}" th:text="${errMsg}"></label>
         </form>
+        <button class="btn btn-default" id="submitBtn">登录</button>
+        <button class="btn btn-default" id="backBtn">返回</button>
     </div>
+    <script>
+        document.addEventListener('UniAppJSBridgeReady', function () {
+            let backBtn = document.getElementById("backBtn");
+            backBtn.onclick = function () {
+                uni.navigateTo({
+                    url: '/pages/index/index',
+                });
+            }
+
+
+            let btn = document.getElementById("submitBtn");
+            btn.onclick = function () {
+                let data = {
+                    username: document.getElementById("username").value,
+                    password: document.getElementById("password").value
+                }
+                $.ajax({
+                    url: "/qqLogin",
+                    type: "POST",
+                    data: data,
+                    success: function (res) {
+                        console.log(res);
+                        if (res != "error" && res != null) {
+                            alert("suc");
+
+                            /*window.opener=null;
+                            window.open('','_self');
+                            window.close();*/
+                            uni.postMessage({
+                                data: {
+                                    msg: "loginSuc"
+                                }
+                            });
+                        } else
+                            alert("账号密码错误");
+                    },
+                    fail: function (res) {
+                        alert("请求失败，请重试");
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
